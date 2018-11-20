@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">InventoryApp</string>
+
+    <string name="menu_main_insert_dummy_data">Insert Dummy Data</string>
+    <string name="menu_main_delete_data">Delete all Data.</string>
+
+    <string name="main_toast_insert_msg">New Record Added with id </string>
+    <string name="main_toast_delete_msg">All Data Deleted.</string>
+
+    <string name="label_product_overview">Product Overview</string>
+    <string name="edit_product_name">Product Name</string>
+    <string name="edit_price">Price</string>
+    <string name="edit_quantity">Quantity</string>
+    <string name="label_supplier_overview">Supplier Overview</string>
+    <string name="edit_supplier_name">Supplier Name</string>
+    <string name="edit_supplier_contact">Supplier Contact</string>
+
+    <string name="the_books_table_contains">This table contains</string>
+    <string name="products">Products</string>
+
+    <string name="required_field">Required</string>
+
+    <string name="price_cannot_be_negative">Price cannot be negative</string>
+    <string name="quantity_cannot_be_negative">Quantity cannot be negative</string>
+
+    <string name="error_saving_book">Error with saving Product</string>
+    <string name="product_saved">Product saved with row id:</string>
+
+    <string name="action_save">Save</string>
+</resources>
