@@ -1,30 +1,69 @@
 <resources>
-    <string name="app_name">InventoryApp</string>
+    <string name="app_name">Inventory App</string>
 
     <string name="menu_main_insert_dummy_data">Insert Dummy Data</string>
     <string name="menu_main_delete_data">Delete all Data.</string>
-
-    <string name="main_toast_insert_msg">New Record Added with id </string>
-    <string name="main_toast_delete_msg">All Data Deleted.</string>
+    <string name="menu_main_settings">Settings</string>
+    <string name="menu_detail_edit">edit</string>
+    <string name="menu_detail_delete">Delete</string>
 
     <string name="label_product_overview">Product Overview</string>
+    <string name="label_supplier_overview">Supplier Overview</string>
     <string name="edit_product_name">Product Name</string>
     <string name="edit_price">Price</string>
     <string name="edit_quantity">Quantity</string>
-    <string name="label_supplier_overview">Supplier Overview</string>
     <string name="edit_supplier_name">Supplier Name</string>
     <string name="edit_supplier_contact">Supplier Contact</string>
 
-    <string name="the_books_table_contains">This table contains</string>
-    <string name="products">Products</string>
+    <string name="settings_minimum_safe_quantity_value">5</string>
+    <string name="settings_minimum_safe_quantity_key">minimum_safe_quantity</string>
+    <string name="settings_minimum_safe_quantity_label">Warn when quantity is less then</string>
 
-    <string name="required_field">Required</string>
+    <string name="quantityAvailableText">Quantity : </string>
+    <string name="noProductsMessage">No products in inventory !!.</string>
+    <string name="noProductMessageDesc">Get started by adding a product.</string>
 
-    <string name="price_cannot_be_negative">Price cannot be negative</string>
-    <string name="quantity_cannot_be_negative">Quantity cannot be negative</string>
+    <string name="rupeeSymbol">\u20B9</string>
 
-    <string name="error_saving_book">Error with saving Product</string>
-    <string name="product_saved">Product saved with row id:</string>
+    <string name="dummy_productName">Dummy Product</string>
+    <string name="dummy_productPrice">200</string>
+    <string name="dummy_productQuantity">15</string>
+    <string name="dummy_supName">Dummy Supplier</string>
+    <string name="dummy_supContact">9874561230</string>
 
-    <string name="action_save">Save</string>
+    <string name="main_negative_quantity">Not enough quantity.</string>
+    <string name="main_delete_all">Products Deleted.</string>
+
+    <string name="settings_default_quantityIncrement_value">1</string><!-- default Value -->
+    <string name="settings_default_quantityIncrement_key">quantity_increment</string>
+    <string name="settings_default_quantityIncrement_label">Quantity Increment or decrement.</string>
+
+    <string name="detail_negative_quantity">Quantity Cannot negative.</string>
+    <string name="detail_orderNow">Order Now</string>
+    <string name="detail_quantityLabel">Quantity : </string>
+    <string name="detail_supplierLabel">Supplier Information : </string>
+
+    <string name="delete_confirm_text">Are you sure want to delete?</string>
+    <string name="delete_confirm_positive">Yes</string>
+    <string name="delete_confirm_negative">No</string>
+
+    <string name="edit_edit_title">Edit Product</string>
+    <string name="edit_add_title">Add Product</string>
+    <string name="edit_prdName_error">Enter Product Name</string>
+    <string name="edit_prdQuantity_error">Enter Product Quantity</string>
+    <string name="edit_prdPrice_error">Enter Product Price</string>
+    <string name="edit_supName_error">Enter Supplier Name</string>
+    <string name="edit_supName_contact">Enter Supplier Contact Number</string>
+    <string name="edit_product_insert">Product Inserted.</string>
+    <string name="edit_product_update">Product Updated.</string>
+    <string name="edit_product_discardDialog_msg">Discard your changes and quit editing?</string>
+    <string name="edit_product_discardDialog_positive">Keep Editing</string>
+    <string name="edit_product_discardDialog_negative">Discard</string>
+    <string name="empty_package">Empty package</string>
+    <string name="product_image">product image</string>
+    <string name="increment">+</string>
+    <string name="decrement">-</string>
+    <string name="sell">Sell</string>
+    <string name="check_mark">check mark</string>
+
 </resources>

@@ -30,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_product_name"
+                android:inputType="text"
                 android:textAppearance="?android:textAppearanceMedium" />
 
             <!--Price Field-->
@@ -38,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_price"
-                android:inputType="numberSigned"/>
+                android:inputType="numberSigned" />
 
             <!--Quantity Field-->
             <EditText
@@ -46,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_quantity"
-                android:inputType="numberSigned"/>
+                android:inputType="numberSigned" />
         </LinearLayout>
     </LinearLayout>
 
@@ -54,7 +55,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/overivew_spacing_margin_top"
+        android:layout_marginTop="@dimen/overview_margin_top"
         android:orientation="horizontal">
 
         <!--Supplier Label-->
@@ -75,7 +76,8 @@
                 android:id="@+id/supplier_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/edit_supplier_name" />
+                android:hint="@string/edit_supplier_name"
+                android:inputType="text" />
 
             <!--Supplier Contact Field-->
             <EditText
@@ -83,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/edit_supplier_contact"
-                android:inputType="phone"/>
+                android:inputType="phone" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

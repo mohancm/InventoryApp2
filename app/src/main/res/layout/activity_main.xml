@@ -5,17 +5,46 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ScrollView
+    <ListView
+        android:id="@+id/productsList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/emptyImg"
+            android:layout_width="@dimen/emptyListImage"
+            android:layout_height="@dimen/emptyListImage"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/empty_package"
+            android:src="@drawable/ic_empty_package" />
 
         <TextView
-            android:id="@+id/products_tv"
-            android:layout_width="match_parent"
+            android:id="@+id/emptyTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp" />
-    </ScrollView>
+            android:layout_below="@id/emptyImg"
+            android:layout_centerInParent="true"
+            android:text="@string/noProductsMessage"
+            android:textSize="@dimen/empty_list_textView"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emptyTitle"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/margin_between"
+            android:text="@string/noProductMessageDesc"
+            android:textSize="@dimen/empty_list_textView" />
+
+    </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -23,8 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/floating_button_margin"
-        android:layout_marginEnd="@dimen/floating_button_margin"
-        android:layout_marginBottom="@dimen/floating_button_margin"
+        android:layout_margin="@dimen/activity_margin"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/ic_pencil" />
 </RelativeLayout>

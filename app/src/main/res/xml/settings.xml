@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="@string/settings_default_quantityIncrement_value"
+        android:inputType="numberDecimal"
+        android:key="@string/settings_default_quantityIncrement_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/settings_default_quantityIncrement_label" />
+
+    <EditTextPreference
+        android:defaultValue="@string/settings_minimum_safe_quantity_value"
+        android:inputType="numberDecimal"
+        android:key="@string/settings_minimum_safe_quantity_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/settings_minimum_safe_quantity_label" />
+
+</PreferenceScreen>

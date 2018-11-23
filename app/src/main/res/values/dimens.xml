@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--activity_catalog.xml dimensions-->
-    <dimen name="catalog_books_textview_padding">16dp</dimen>
     <dimen name="floating_button_margin">16dp</dimen>
-
-    <!--activity_editor.xml dimensions-->
     <dimen name="editor_main_linear_layout_padding">16dp</dimen>
-    <dimen name="overivew_spacing_margin_top">16dp</dimen>
+    <dimen name="overview_margin_top">16dp</dimen>
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="list_image_size">80dp</dimen>
+    <dimen name="list_prdName_size">24sp</dimen>
+    <dimen name="emptyListImage">120dp</dimen>
+    <dimen name="detail_quantitySize">20sp</dimen>
+    <dimen name="margin_between">5dp</dimen>
+    <dimen name="empty_list_textView">15sp</dimen>
 </resources>

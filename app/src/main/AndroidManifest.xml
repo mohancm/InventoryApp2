@@ -16,7 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditorActivity"></activity>
+        <activity
+            android:name=".EditorActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <provider
+            android:name=".database.ProductDBProvider"
+            android:authorities="com.mohancm.inventoryapp"
+            android:exported="false" />
     </application>
 
 </manifest>

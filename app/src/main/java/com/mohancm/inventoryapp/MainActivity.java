@@ -1,28 +1,51 @@
 package com.mohancm.inventoryapp;
 
+import android.app.LoaderManager;
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.mohancm.inventoryapp.database.ProductContract.ProductEntry;
-import com.mohancm.inventoryapp.database.ProductDBHelper;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private ProductDBHelper productDBHelper;
+    private final int LOADER_ID = 0;
+    private ProductAdapter productAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ListView productsList = findViewById(R.id.productsList);
+        productAdapter = new ProductAdapter(this, null);
+        productsList.setEmptyView(findViewById(R.id.emptyView));
+
+        productsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.setData(ContentUris.withAppendedId(ProductEntry.CONTENT_URI, id));
+                startActivity(intent);
+            }
+        });
+
+        productsList.setAdapter(productAdapter);
 
         // Setup FAB to open EditorActivity
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -34,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        productDBHelper = new ProductDBHelper(this);
+        // Initiating Loader.
+        getLoaderManager().initLoader(LOADER_ID, null, this);
 
 
     }
@@ -46,83 +70,83 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        // Handling menu item clicks.
+        switch (menuItem.getItemId()) {
             case R.id.action_insert_dummy_data:
+                insetData();
                 break;
             case R.id.action_delete_all_entries:
+                // Displaying confirmation dialog to confirm delete all.
+                showDeleteConfirmationDialog();
+                break;
+            case R.id.action_settings:
+                Intent i = new Intent(MainActivity.this, SettingsActivity.class);
+                // starting settings activity.
+                startActivity(i);
                 break;
         }
         return true;
     }
 
-    private Cursor queryData() {
-        SQLiteDatabase database = productDBHelper.getReadableDatabase();
-        String[] projections = {
-                ProductEntry.COLUMN_PRODUCT_ID,
-                ProductEntry.COLUMN_PRODUCT_NAME,
-                ProductEntry.COLUMN_PRODUCT_PRICE,
-                ProductEntry.COLUMN_PRODUCT_QUANTITY,
-                ProductEntry.COLUMN_SUPPLIER_NAME,
-                ProductEntry.COLUMN_SUPPLIER_PHONE,
-        };
+    private void deleteALlData() {
+        int i = getContentResolver().delete(ProductEntry.CONTENT_URI, null, null);
+        Toast.makeText(this, i + " " + getString(R.string.main_delete_all), Toast.LENGTH_SHORT).show();
+    }
 
-        Cursor cursor;
-        cursor = database.query(ProductEntry.TABLE_NAME,
-                projections,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null);
+    private void showDeleteConfirmationDialog() {
 
-        return cursor;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.delete_confirm_text));
+        // Handling positive response.
+        builder.setPositiveButton(getString(R.string.delete_confirm_positive), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteALlData();
+            }
+        });
+        // Handling Negative Response.
+        builder.setNegativeButton(R.string.delete_confirm_negative, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
 
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        // Create and show the AlertDialog
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 
-    private void displayData() {
-        Cursor cursor = queryData();
-        TextView displayView = findViewById(R.id.products_tv);
-        displayView.setText(getString(R.string.the_books_table_contains));
-        displayView.append(" " + cursor.getCount() + " ");
-        displayView.append(getString(R.string.products) + "\n\n");
+    private void insetData() {
 
-        int productIdColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_ID);
-        int productNameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
-        int productPriceColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_PRICE);
-        int productQuantityColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_QUANTITY);
-        int productSupplierNameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_NAME);
-        int productSupplierContactColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_PHONE);
-
-        try {
-            while (cursor.moveToNext()) {
-                int currentId = cursor.getInt(productIdColumnIndex);
-                String currentProductName = cursor.getString(productNameColumnIndex);
-                int currentProductPrice = cursor.getInt(productPriceColumnIndex);
-                int currentProductQuantity = cursor.getInt(productQuantityColumnIndex);
-                String currentProductSupplierName = cursor.getString(productSupplierNameColumnIndex);
-                String currentProductSupplierContact = cursor.getString(productSupplierContactColumnIndex);
-
-                displayView.append("\n" + ProductEntry._ID + " : " + currentId + "\n" +
-                        ProductEntry.COLUMN_PRODUCT_NAME + " : " + currentProductName + "\n" +
-                        ProductEntry.COLUMN_PRODUCT_PRICE + " : " + currentProductPrice + "\n" +
-                        ProductEntry.COLUMN_PRODUCT_QUANTITY + " : " + currentProductQuantity + "\n" +
-                        ProductEntry.COLUMN_SUPPLIER_NAME + " : " + currentProductSupplierName + "\n" +
-                        ProductEntry.COLUMN_SUPPLIER_PHONE + " : " + currentProductSupplierContact + "\n");
-            }
-        } finally {
-            cursor.close();
-        }
-
-
+        // Creating contectValues.
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ProductEntry.COLUMN_PRODUCT_NAME, getString(R.string.dummy_productName));
+        contentValues.put(ProductEntry.COLUMN_PRODUCT_PRICE, getString(R.string.dummy_productPrice));
+        contentValues.put(ProductEntry.COLUMN_PRODUCT_QUANTITY, getString(R.string.dummy_productQuantity));
+        contentValues.put(ProductEntry.COLUMN_SUPPLIER_NAME, getString(R.string.dummy_supName));
+        contentValues.put(ProductEntry.COLUMN_SUPPLIER_PHONE, getString(R.string.dummy_supContact));
+        getContentResolver().insert(ProductEntry.CONTENT_URI, contentValues);
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        displayData();
+    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
+        // Creating cursor loader to get all product data from database.
+        // order is descending new products will come at top.
+        return new CursorLoader(this, ProductEntry.CONTENT_URI, null, null, null, ProductEntry.COLUMN_PRODUCT_ID + " desc");
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        productAdapter.swapCursor(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        productAdapter.swapCursor(null);
     }
 }

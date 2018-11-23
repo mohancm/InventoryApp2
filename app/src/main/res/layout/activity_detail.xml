@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_margin"
+    tools:context=".DetailActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:onClick="orderNow"
+        android:text="@string/detail_orderNow"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/productImageHolder"
+        android:layout_width="@dimen/list_image_size"
+        android:layout_height="@dimen/list_image_size"
+        android:contentDescription="@string/product_image"
+        android:src="@drawable/ic_package" />
+
+    <TextView
+        android:id="@+id/prdName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_margin"
+        android:layout_toEndOf="@id/productImageHolder"
+        android:textSize="@dimen/list_prdName_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/prdPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/prdName"
+        android:layout_marginStart="@dimen/activity_margin"
+        android:layout_toEndOf="@id/productImageHolder" />
+
+    <TextView
+        android:id="@+id/quanntityTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productImageHolder"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:text="@string/detail_quantityLabel"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/quantityControls"
+        android:layout_width="@dimen/emptyListImage"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quanntityTxt"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/prdQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/detail_quantitySize" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onClick="increment"
+            android:text="@string/increment" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:onClick="decrement"
+            android:text="@string/decrement" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/supInfoLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quantityControls"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:text="@string/detail_supplierLabel"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/supName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/supInfoLable" />
+
+    <TextView
+        android:id="@+id/supContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/supName" />
+
+
+</RelativeLayout>

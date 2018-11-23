@@ -5,8 +5,9 @@
     tools:context=".EditorActivity">
 
     <item
-        android:id="@+id/action_save"
+        android:id="@+id/action_check"
         android:icon="@drawable/ic_done"
-        android:title="@string/action_save"
+        android:title="@string/check_mark"
         app:showAsAction="always" />
+
 </menu>
